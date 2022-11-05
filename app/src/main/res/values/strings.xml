@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Foodrestaurent</string>
+    <string name="car_rent">Car Rent</string>
+    <string name="expand_all">expand_all</string>
+</resources>
