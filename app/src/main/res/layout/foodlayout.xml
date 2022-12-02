@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="200dp">
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="165dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/food" />
+
+        <RelativeLayout
+            android:layout_width="238dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/imageView">
+
+            <TextView
+                android:id="@+id/name"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/price"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@id/name"
+                android:layout_marginTop="20dp"
+                android:text="price" />
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="79dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/price"
+                android:layout_marginLeft="140dp"
+                android:layout_marginTop="46dp"
+                android:layout_marginRight="100dp"
+                android:src="@drawable/ic_add_to_cart" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

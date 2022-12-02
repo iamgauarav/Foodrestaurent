@@ -2,6 +2,7 @@ package com.example.foodrestaurent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.media.session.PlaybackState;
 import android.os.Bundle;
@@ -12,12 +13,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     Button b,login;
     EditText emailtext,passwordtext;
     TextView t3;
     String email;
     String password;
+
     DataBAseHelper dbh=new DataBAseHelper(MainActivity.this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         t3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i1=new Intent(MainActivity.this,OrderActivity.class);
+                Intent i1=new Intent(MainActivity.this,SecondActivity.class);
                 startActivity(i1);
             }
         });
@@ -51,8 +56,19 @@ public class MainActivity extends AppCompatActivity {
               customer cm=new customer(email,password);
               if(dbh.findcustomer(cm)==0)
                   Toast.makeText(MainActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
-              else if(dbh.findcustomer(cm)==1)
+              else if(dbh.findcustomer(cm)==1) {
+                  //the customer has logged in
                   Toast.makeText(MainActivity.this, "Login", Toast.LENGTH_SHORT).show();
+                  Intent i = new Intent(MainActivity.this,order_menu.class);
+                  boolean success=dbh.addorder(cm);
+                  ArrayList<ArrayList<String>>al=new ArrayList<ArrayList<String>>();
+                  al=dbh.getallorderdetails();
+                  int cust_id= dbh.getcustomeridbyemail(cm);
+                  i.putExtra("sendcustid",cust_id);
+                  startActivity(i);
+                  //insert order into order_table
+
+              }
               else
                   Toast.makeText(MainActivity.this, "No account found in the database", Toast.LENGTH_SHORT).show();
             }
