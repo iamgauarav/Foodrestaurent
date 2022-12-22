@@ -9,9 +9,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
-import java.util.Calendar;
 
 public class DataBAseHelper extends SQLiteOpenHelper {
 
@@ -21,9 +21,11 @@ public class DataBAseHelper extends SQLiteOpenHelper {
     public static final String CUSTOMER_TABLE = "Customer";
 
     //-------------------food table constants below
-    public static final String FOOD_TABLE = "food_table";
-    public static final String FOOD_NAME = "food_name";
-    public static final String FOOD_PRICE = "food_price ";
+    final String FOOD_TABLE = "food_table";
+    final String FOOD_NAME="food_name";
+    final String FOOD_PRICE="food_price";
+    final String FOODBITIMAGE="foodbitimage";
+    final String FOODORDERID="food_id";
     public static final String CUSTOMER_ID = "customer_id";
     public static final String ORDER_TABLE = "order_table";
     public static final String ORDER_ID = "order_id";
@@ -31,7 +33,7 @@ public class DataBAseHelper extends SQLiteOpenHelper {
     public static final String STATUS = "status";
     String createcustomertable="create table "+CUSTOMER_TABLE+"("+ CUSTOMER_ID +" INTEGER,"+ CUST_EMAIL +" text," + CUST_PASSWORD + " text"+",PRIMARY KEY("+CUSTOMER_ID+" AUTOINCREMENT))";
     String createordertable= "create table " + ORDER_TABLE + "("+CUSTOMER_ID +" INTEGER not null," + ORDER_ID + " integer not null," + ORDER_DATE_TIME + " text not null," + STATUS + " integer not null, PRIMARY KEY(order_id AUTOINCREMENT),FOREIGN KEY(customer_id) REFERENCES food_table(customer_id))";
-    String createfoodtable="create table " + FOOD_TABLE + "("+FOOD_NAME +" TEXT not null," + ORDER_ID + " integer not null,"+FOOD_PRICE+" REAL,"+"PRIMARY KEY(order_id,food_name),FOREIGN KEY(order_id) REFERENCES order_table(order_id))";
+    String createfoodtable="create table " + FOOD_TABLE + "("+FOOD_NAME +" TEXT not null,"+FOODORDERID+" INTEGER not null,"+FOOD_PRICE+" REAL,"+FOODBITIMAGE+" byte"+",PRIMARY KEY(food_id AUTOINCREMENT))";
 
     public DataBAseHelper(@Nullable Context context) {
         super(context,"restut.db", null, 1);
@@ -71,6 +73,7 @@ public class DataBAseHelper extends SQLiteOpenHelper {
             return false;
         else return true;
     }
+    //returns an arraylist of all the present orders
     public ArrayList<ArrayList<String>>getallorderdetails(){
         ArrayList<ArrayList<String>>ans=new ArrayList<ArrayList<String>>();
         String queryString="select * from "+ORDER_TABLE;
@@ -153,11 +156,11 @@ public class DataBAseHelper extends SQLiteOpenHelper {
 //        returns 0 if customer is found but password is incorrect
 //        returns 1 if customer is found in database with correct password (log the customer in)
 //        return 2 if customer is not found in database
-        System.out.println("hit");
    ArrayList<customer>allcustomerinfo=new ArrayList<customer>();
    String email=cm.getEmail();
    String password=cm.getPassword();
    allcustomerinfo=getAllcustomer();
+
    for(int i=0;i<allcustomerinfo.size();i++)
    {
      if(Objects.equals(allcustomerinfo.get(i).getEmail(), email))
@@ -185,6 +188,59 @@ public class DataBAseHelper extends SQLiteOpenHelper {
         if(insert==-1)
             return false;
         else return true;
+    }
+    //get the order id of the customer using email
+    public int getorderid(customer cm){
+        String email=cm.getEmail();
+        SQLiteDatabase db=getReadableDatabase();
+        String querystring="SELECT from Customer,order_table where ";
+        System.out.println(querystring);
+        Cursor cursor=db.rawQuery(querystring,null);
+        int id=2234;
+        cursor.moveToFirst();
+        id=cursor.getInt(0);
+        return id;
+    }
+
+    //insertingfooditems
+    public long insertfood(String food_name,Double food_price,byte[] img){
+        SQLiteDatabase db=getWritableDatabase();
+        ContentValues c=new ContentValues();
+        c.put(FOOD_NAME,food_name);
+        c.put(FOOD_PRICE,food_price);
+        c.put(FOODBITIMAGE,img);
+        long res=db.insert(FOOD_TABLE,null,c);
+        return res;
+    }
+    public int deletebyfoodid(int foodid){
+        SQLiteDatabase db= getWritableDatabase();
+        int res=db.delete("food_table","food_id=?",new  String[]{foodid+""});
+//        String queryString="Delete from "+FOOD_TABLE+" where "+FOOD_NAME+" ="+foodname;
+//        Cursor cursor = db.rawQuery(queryString,null);
+//        if (cursor.moveToFirst())
+//            return true;
+//        else
+//            return false;
+        return res;
+    }
+    public Cursor returnallfood(){
+        SQLiteDatabase db=getReadableDatabase();
+        return db.rawQuery("select * from food_table",null);
+//        food_name,food_id,food_price
+    }
+    public Cursor returnfoodrowbyfoodid(int id){
+        //return the cursor pointing to the food row of designated food id
+        SQLiteDatabase db=getReadableDatabase();
+        return db.rawQuery("select * from food_table where food_id="+id,null);
+
+    }
+    public int returnfoodidbyfoodname(String foodname){
+        SQLiteDatabase db=getReadableDatabase();
+        Cursor c= db.rawQuery("select * from food_table where food_name ='"+foodname+"'",null);
+        if( c != null && c.moveToFirst() ){
+            return c.getInt(1);
+        }
+       return 24;
     }
 
 }

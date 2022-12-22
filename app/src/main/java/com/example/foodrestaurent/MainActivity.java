@@ -1,20 +1,17 @@
 package com.example.foodrestaurent;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.content.Intent;
-import android.media.session.PlaybackState;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     Button b,login;
@@ -53,8 +50,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 email=emailtext.getText().toString();
                 password=passwordtext.getText().toString();
-              customer cm=new customer(email,password);
-              if(dbh.findcustomer(cm)==0)
+                customer cm=new customer(email,password);
+                if(Objects.equals(email, "admin") && password.equals("a")) {
+                    Toast.makeText(MainActivity.this, "ADMIN LOGIN", Toast.LENGTH_SHORT).show();
+                    Intent i=new Intent(MainActivity.this,Adminupload.class);
+                    startActivity(i);
+                }
+              else if(dbh.findcustomer(cm)==0)
                   Toast.makeText(MainActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
               else if(dbh.findcustomer(cm)==1) {
                   //the customer has logged in
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                   al=dbh.getallorderdetails();
                   int cust_id= dbh.getcustomeridbyemail(cm);
                   i.putExtra("sendcustid",cust_id);
+                  i.putExtra("sendcustemail",cm.getEmail());
                   startActivity(i);
                   //insert order into order_table
 
