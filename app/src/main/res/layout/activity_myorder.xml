@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Myorder">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:orientation="horizontal"
+        android:id="@+id/lin1">
+
+        <ImageView
+            android:id="@+id/arrow"
+            android:layout_width="67dp"
+            android:layout_height="53dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/undo" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="71dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:paddingTop="15dp"
+            android:text="My Orders"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="346dp"
+        android:layout_height="462dp"
+        android:layout_below="@+id/lin1"
+        android:layout_alignParentStart="true"
+
+
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="106dp" />
+
+
+</RelativeLayout>

@@ -2,16 +2,13 @@ package com.example.foodrestaurent;
 
 import android.graphics.Bitmap;
 
-
-public class food {
+public class food_admin {
     String food_name;
     double food_price;
-    int quantity;
     Bitmap bm;
-    public food(String food_name, double food_price, int quantity, Bitmap bm){
+    public food_admin(String food_name, double food_price, Bitmap bm){
         this.food_name = food_name;
         this.food_price = food_price;
-        this.quantity=quantity;
         this.bm=bm;
     }
 
@@ -23,10 +20,6 @@ public class food {
 
     public double getFood_price() {
         return food_price;
-    }
-
-    public int getQuantity() {
-        return quantity;
     }
 
     public Bitmap getBm() {
@@ -41,11 +34,10 @@ public class food {
         this.food_price = food_price;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+
     public void setBm(Bitmap bm) {
         this.bm = bm;
     }
 
 }
+

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="200dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+
+        >
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView"
+            android:layout_width="105dp"
+            android:layout_height="162dp"
+            android:foregroundGravity="center"
+            android:paddingLeft="20sp"
+            android:src="@drawable/food"
+
+            />
+
+        <RelativeLayout
+            android:layout_width="238dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/imageView">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@id/name"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="price" />
+
+            <ImageButton
+                android:id="@+id/plus"
+                android:layout_width="30dp"
+                android:layout_height="23dp"
+
+                android:layout_below="@id/price"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="38dp"
+                android:layout_marginRight="100dp"
+                android:foregroundGravity="center_vertical|center|center_horizontal"
+                android:src="@drawable/ic_baseline_add_24" />
+
+            <ImageButton
+                android:id="@+id/minus"
+                android:layout_width="34dp"
+                android:layout_height="24dp"
+                android:layout_below="@id/price"
+                android:layout_alignLeft="@+id/counter"
+                android:layout_marginLeft="43dp"
+                android:layout_marginTop="42dp"
+                app:srcCompat="@drawable/ic_baseline_remove_24" />
+
+            <TextView
+                android:id="@+id/counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/price"
+                android:layout_alignLeft="@+id/plus"
+                android:layout_marginLeft="57dp"
+                android:layout_marginTop="44dp"
+                android:text="0" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

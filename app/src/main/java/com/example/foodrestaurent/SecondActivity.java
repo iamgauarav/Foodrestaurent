@@ -47,7 +47,7 @@ public class SecondActivity extends AppCompatActivity {
                 else{
                     if(!getpass.equals(getrepass))
                     {
-                        System.out.println(getpass+" "+getrepass);
+//                        System.out.println(getpass+" "+getrepass);
                         Toast.makeText(SecondActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                     }
                     else{

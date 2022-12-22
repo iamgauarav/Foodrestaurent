@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".order_menu">
+
+    <ImageView
+        android:layout_width="294dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="64dp"
+        android:paddingBottom="22dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/minus"
+        android:textAlignment="viewStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="200dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="16dp"
+        android:gravity="center"
+        android:text="ORDER MENU"
+        android:textColor="@color/black"
+        android:textSize="27sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.043" />
+
+    <ListView
+        android:id="@+id/lv"
+        android:layout_width="407dp"
+        android:layout_height="420dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.403"
+        android:scrollbarDefaultDelayBeforeFade="10"
+        />
+
+    <TextView
+        android:id="@+id/welcometex"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="center"
+        android:text="Grab some delicious meal from 'Gangster Paradise'"
+        android:textColor="@color/black"
+
+        android:textColorHighlight="#000000"
+        android:textColorHint="#000000"
+        android:textColorLink="#000000"
+        android:textSize="13dp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/welcometext"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:layout_marginStart="28dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="center"
+        android:text="HI "
+        android:textColor="@color/black"
+        android:textColorHighlight="#000000"
+        android:textColorHint="#000000"
+        android:textColorLink="#000000"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.095" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/gotocart"
+        android:layout_width="312dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="24dp"
+        android:scaleType="centerCrop"
+        android:shadowColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lv"
+        app:layout_constraintVertical_bias="0.888"
+        app:lottie_rawRes="@raw/cart"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        app:rippleColor="#000000"
+        app:strokeColor="#000000" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
